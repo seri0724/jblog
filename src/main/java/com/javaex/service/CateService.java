@@ -14,21 +14,21 @@ public class CateService {
 	@Autowired
 	private CateDao cateDao;
 	
-	/*회원번호로 가테고리 가져오기*/
+	//회원번호로 카테고리 가져오기
 	public List<CateVo> getCateList(int userNo) {
+		
 		return cateDao.selectList(userNo);
 	}
-
-	
-	/*카테고리 추가*/
+	//카테고리 추가
 	public CateVo addCate(CateVo cateVo) {
-		//카테고리 내용을 저장하고 방금저장한 카테고리 정보 모두를 가져온다
+		
+		//카테고리 내용을 저장하고 방금저장한 카테고리 정보 모두를 가져옴
 		int cateNo = cateDao.insertCate(cateVo);
 		return cateDao.selectCate(cateNo);
 	}
-	
-	/*카테고리 삭제*/
+	//카테고리 삭제
 	public int removeCate(int cateNo) {
+		
 		return cateDao.deleteCate(cateNo);
 	}
 }

@@ -10,32 +10,32 @@
 		</selectKey>
 		<![CDATA[
 			insert into users
-			values(#{userNo}, 
-			       #{id}, 
-			       #{userName}, 
-			       #{password}, 
-			       sysdate
-			)
+			values (#{userNo}, 
+			        #{id}, 
+			        #{userName}, 
+			        #{password}, 
+			        sysdate)
 		]]>
 	</insert>
 
 	<!-- 아이디로 회원정보 가져오기 -->
 	<select id="selectUserById" parameterType="string"  resultType="com.javaex.vo.UserVo">
 		<![CDATA[
-			select userNo, id, userName from users 
+			select userNo, id, userName 
+			from users 
 			where id = #{id} 
 		]]>
 	</select>
 	
-	<!-- 로그인용(id,password 로 회원정보 가져오기 -->
+	<!-- 로그인용(id,password로 회원정보 가져오기 -->
 	<select id="selectUserForLogin" parameterType="com.javaex.vo.UserVo"  resultType="com.javaex.vo.UserVo">
 		<![CDATA[
-			select userNo, id, userName from users 
+			select userNo, id, userName 
+			from users 
 			where id = #{id} 
 			and password = #{password}
 		]]>
 	</select>
-
 
 	<!-- id 로 usrNo 가져오기 -->
 	<select id="selectUserNoById" parameterType="string"  resultType="int">
@@ -45,4 +45,5 @@
 			where id = #{id} 
 		]]>
 	</select>
+	
 </mapper>

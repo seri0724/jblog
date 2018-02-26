@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 	
-	/*JBlog 메인 폼 출력*/
+	//Blog 메인
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String main() {
+		
 		return "main/index";
 	}
 }

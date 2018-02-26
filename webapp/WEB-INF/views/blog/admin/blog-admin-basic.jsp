@@ -6,8 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JBlog</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+
 </head>
 <body>
 
@@ -15,7 +17,6 @@
 		
 		<!-- 블로그 해더 -->
 		<c:import url="/WEB-INF/views/includes/blog-header.jsp"></c:import>
-		
 		
 		<div id="wrapper">
 			<div id="content" class="full-screen">
@@ -38,8 +39,7 @@
 			      			</c:if>
 			      			<c:if test="${blogVo.logoFile ne 'default'}">
 			      				<td><img src="${pageContext.request.contextPath}/upload/${blogVo.logoFile}"></td>   
-			      			</c:if>
-			      			   			
+			      			</c:if>  			
 			      		</tr>      		
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
@@ -53,7 +53,6 @@
 				</form>
 			</div>
 		</div>
-		
 		
 		<!-- 푸터-->
 		<c:import url="/WEB-INF/views/includes/blog-footer.jsp"></c:import>

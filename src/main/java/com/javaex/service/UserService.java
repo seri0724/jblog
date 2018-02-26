@@ -16,25 +16,22 @@ public class UserService {
 
 	@Autowired
 	private UserDao userDao;
-	
 	@Autowired
 	private BlogDao blogDao;
-	
 	@Autowired
 	private CateDao cateDao;
 	
-	
-
-	/*회원가입: 회원정보, 블로그기본정보, 카테고리기본정보가 저장되어야함*/
+	//회원가입 : 회원정보, 블로그 기본정보, 카테고리 기본정보가 저장
 	@Transactional
 	public void join(UserVo userVo) {
+		
 		//회원정보 저장
-		int userNo = userDao.insertUserVo(userVo); // 키값 필요
+		int userNo = userDao.insertUserVo(userVo); //키값 필요
 		
 		//블로그 초기값 저장(개설)
 		BlogVo blogVo = new BlogVo();
 		blogVo.setUserNo(userNo);
-		blogVo.setBlogTitle(userVo.getUserName() +"의 블로그입니다.");
+		blogVo.setBlogTitle(userVo.getUserName() +"님의 블로그입니다.");
 		blogVo.setLogoFile("default");
 		
 		blogDao.insertBlog(blogVo);
@@ -47,21 +44,21 @@ public class UserService {
 		
 		cateDao.insertCate(cateVo);
 	}
-	
-	/*아이디체크 : 회원가입시 사용중인 아이디인지 검사*/
+	//id중복체크 : 회원가입시 검사
 	public boolean idCheck(String id) {
+		
 		boolean isExist;
 		UserVo userVo = userDao.selectUserVo(id);
 		if(userVo == null) {
-			isExist = false; //존재하니-->아니요: 사용할 수 있음
+			isExist = false; //존재하니-->아니요:사용 o
 		} else {
-			isExist = true;  //존재하니-->예: 사용할 수 없음
+			isExist = true;  //존재하니-->예:사용 x
 		}
 		return isExist;
 	}
-	
-	/*로그인*/
+	//로그인
 	public UserVo login(UserVo userVo) {
+		
 		//회원정보 가져오기
 		UserVo authUser = userDao.selectUserVo(userVo);
 		return authUser;

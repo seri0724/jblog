@@ -2,14 +2,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JBlog</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+
 </head>
 <body>
 
@@ -24,7 +25,7 @@
 					<c:if test="${not empty postVo}">
 						<h4>${postVo.postTitle}</h4>
 						<p>
-						${fn:replace(postVo.postContent, newLine, "<br>") }
+						${fn:replace(postVo.postContent, newLine, "<br>")}
 						<p>
 					</c:if>
 					<c:if test="${empty postVo}">
@@ -70,4 +71,5 @@
 		
 	</div>
 </body>
+
 </html>

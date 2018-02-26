@@ -22,9 +22,9 @@ public class ApiCateController {
 	@Autowired
 	private CateService cateService;
 
-	/*회원별(블로그별) 카테고리 리스트 가져오기*/
+	//회원별 카테고리 리스트 가져오기
 	@ResponseBody
-	@RequestMapping(value = "/api/cate/list", method = RequestMethod.POST)
+	@RequestMapping(value="/api/cate/list", method=RequestMethod.POST)
 	public List<CateVo> cateList(HttpSession session) {
 		
 		//로그인한 사용자의 카테고리 리스트를 가져옴
@@ -32,19 +32,19 @@ public class ApiCateController {
 		List<CateVo> cateList = cateService.getCateList(authUser.getUserNo());
 		return cateList;
 	}
-
-	/*카테고리 추가*/
+	//카테고리 추가
 	@ResponseBody
-	@RequestMapping(value = "/api/cate/add", method = RequestMethod.POST)
+	@RequestMapping(value="/api/cate/add", method=RequestMethod.POST)
 	public CateVo cateAdd(@ModelAttribute CateVo cateVo) {
-		//카테고리 내용을 저장하고 방금저장한 카테고리 정보 모두를 가져온다
+		
+		//카테고리 내용을 저장하고 저장한 카테고리 정보 모두 가져옴
 		return cateService.addCate(cateVo);
 	}
-
-	/*카테고리 삭제*/
+	//카테고리 삭제
 	@ResponseBody
-	@RequestMapping(value = "/api/cate/remove", method = RequestMethod.POST)
+	@RequestMapping(value="/api/cate/remove", method=RequestMethod.POST)
 	public int cateAdd(@RequestParam("cateNo") int cateNo) {
+		
 		return cateService.removeCate(cateNo);
 	}
 }

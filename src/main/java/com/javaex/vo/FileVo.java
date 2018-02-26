@@ -9,8 +9,8 @@ public class FileVo {
 	private long fileSize;
 	
 	public FileVo() {
+		
 	}
-	
 	public FileVo(String orgName, String exName, String saveName, String filePath, long fileSize) {
 		this.orgName = orgName;
 		this.exName = exName;
@@ -48,11 +48,9 @@ public class FileVo {
 	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
-
 	@Override
 	public String toString() {
 		return "FileVo [orgName=" + orgName + ", exName=" + exName + ", saveName=" + saveName + ", filePath=" + filePath
 				+ ", fileSize=" + fileSize + "]";
 	}
-	
 }

@@ -18,47 +18,43 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	/*회원가입폼 출력*/
+	//회원가입
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String joinForm() {
+		
 		return "user/joinForm";
 	}
-	
-	/*회원가입*/
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(@ModelAttribute UserVo userVo) {
+		
 		userService.join(userVo);
 		return "user/joinSuccess";
 	}
-	
-	/*로그인폼 출력*/
+	//로그인
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginForm() {
+		
 		return "user/loginForm";
 	}
-	
-	/*로그인*/
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
+		
 		UserVo authUser = userService.login(userVo);
 	
 		//세션처리
 		if(authUser != null) { //성공시
 			session.setAttribute("authUser", authUser);
-			return "redirect:/";
-		}else { //실패시
+			return "redirect:/"; //메인
+		} else { //실패시
 			return "redirect:/user/login?result=fail";
 		}
-		
 	}
-	
-	/*로그아웃*/
+	//로그아웃
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(HttpSession session) {
+		
 		session.removeAttribute("authUser");
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:/"; //메인
 	}
-	
-	
 }

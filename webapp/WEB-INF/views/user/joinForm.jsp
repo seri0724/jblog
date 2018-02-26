@@ -6,10 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JBlog</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+
 </head>
 <body>
+
 	<div class="center-content">
 		
 		<!-- 메인해더 -->
@@ -17,10 +20,10 @@
 		
 		<form class="join-form" id="join-form" method="post" action="${pageContext.request.contextPath}/user/join">
 			<label class="block-label" for="name">이름</label>
-			<input type="text" name="userName"  value="" />
+			<input type="text" name="userName" value="" />
 			
 			<label class="block-label" for="id">아이디</label>
-			<input type="text" name="id"  value="" />
+			<input type="text" name="id" value="" />
 			
 			<input id="btn-checkid" type="button" value="id 중복체크">
 			<p id="checkid-msg" class="form-error">
@@ -28,7 +31,7 @@
 			</p>
 			
 			<label class="block-label" for="password">패스워드</label>
-			<input type="password" name="password"  value="" />
+			<input type="password" name="password" value="" />
 
 			<fieldset>
 				<legend>약관동의</legend>
@@ -43,21 +46,21 @@
 
 </body>
 
-
 <script type="text/javascript">
 
-// 아이디체크 
-$("#btn-checkid").on("click", function(){
+//id중복체크 
+$("#btn-checkid").on("click", function() {
  	var id = $("[name=id]").val();
+ 	
  	$.ajax({
 		url : "${pageContext.request.contextPath }/api/user/idcheck",		
 		type : "post",
-		data : {id: id},
+		data : {id:id},
 		dataType : "json",
 		success : function(isExist) {
-			if(isExist == false){
+			if(isExist == false) {
 				$("#checkid-msg").text("사용할 수 있는 아이디 입니다.")
-			}else {
+			} else {
 				$("#checkid-msg").text("다른 아이디로 가입해 주세요.")
 			}
 		},
@@ -66,6 +69,6 @@ $("#btn-checkid").on("click", function(){
 		}
 	});
 });
-
 </script>
+
 </html>

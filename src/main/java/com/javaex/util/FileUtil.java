@@ -14,23 +14,22 @@ public class FileUtil {
 
 	public FileVo fileUpload(MultipartFile file) {
 		
-		String saveDir = "D:\\javaStudy\\upload";
+		String saveDir = "D:\\JavaStudy\\upload";
 
-		// 원파일이름
+		//원래파일이름
 		String orgName = file.getOriginalFilename();
 
-		// 확장자
+		//확장자
 		String exName = orgName.substring(orgName.lastIndexOf("."));
 
-		// 저장파일이름
+		//저장파일이름
 		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 
-		//파일패스 생성
+		//파일패스
 		String filePath = saveDir + "\\" + saveName;
 		
-		//파일 사이즈
+		//파일사이즈
 		long fileSize = file.getSize();
-		
 		
 		// 파일업로드
 		try {
@@ -46,10 +45,7 @@ public class FileUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		FileVo fileVo = new FileVo(orgName, exName, saveName, filePath, fileSize);
-		
 		return fileVo;
-		
 	}
 }

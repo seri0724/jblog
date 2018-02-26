@@ -6,9 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JBlog</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
+
 </head>
 <body>
+
 	<div class="center-content">
 		
 		<!-- 메인해더 -->
@@ -19,4 +22,5 @@
 	</div>
 
 </body>
+
 </html>

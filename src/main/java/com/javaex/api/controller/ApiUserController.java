@@ -14,10 +14,10 @@ public class ApiUserController {
 	@Autowired
 	private UserService userService;
 	
-	/*아이디체크 : 회원가입시 사용중인 아이디인지 검사*/
+	//id중복체크 : 회원가입시 검사
 	@ResponseBody
-	@RequestMapping(value = "/api/user/idcheck", method = RequestMethod.POST)
-	public boolean cateList(String id) {
+	@RequestMapping(value="/api/user/idcheck", method=RequestMethod.POST)
+	public boolean cateList(String id) { //id만 검사할꺼니깐 id하나만 받아오기
 
 		return userService.idCheck(id);
 	}

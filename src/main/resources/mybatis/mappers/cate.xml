@@ -10,26 +10,24 @@
 		</selectKey>
 		<![CDATA[
 			insert into category
-			values(#{cateNo}, 
-			       #{userNo},
-			       #{cateName}, 
-			       #{description},
-			       sysdate
-			)
+			values (#{cateNo}, 
+			        #{userNo},
+			        #{cateName}, 
+			        #{description},
+			        sysdate)
 		]]>
 	</insert>
 	
-	<!-- 특정카테고리 정보를 가져온다 -->
+	<!-- 특정 카테고리 정보를 가져온다 -->
 	<select id="selectCate" parameterType="int" resultType="com.javaex.vo.CateVo">
 		<![CDATA[
 			select cateNo, userNo, cateName, description, regDate
 			from category
-			where cateNo =#{cateNo}
-			
+			where cateNo = #{cateNo}
 		]]>
 	</select>
 	
-	<!-- 회원번호로 가테고리리스트 가져오기 (포스트 갯수도 같이 가져옴)-->
+	<!-- 회원번호로 카테고리리스트 가져오기 (포스트 수도 같이 가져옴)-->
 	<select id="selectList" parameterType="int" resultType="com.javaex.vo.CateVo">
 		<![CDATA[
 			select c.cateNo, c.userNo, c.cateName, c.description, c.regDate, p.cnt
@@ -40,17 +38,14 @@
 			where userNo = #{userNo}
 		    and c.cateNo = p.cateNo(+)
 			order by cateNo desc
-			
-			
 		]]>
 	</select>
-	
 	
 	<!-- 카테고리삭제 -->
 	<delete id="deleteCate" parameterType="int" >
 		<![CDATA[
 			delete from category
-			where cateNo =#{cateNo}
+			where cateNo = #{cateNo}
 		]]>
 	</delete>
 	

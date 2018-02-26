@@ -6,8 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JBlog</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+
 </head>
 <body>
 
@@ -16,7 +18,6 @@
 		<!-- 블로그 해더 -->
 		<c:import url="/WEB-INF/views/includes/blog-header.jsp"></c:import>
 
-		
 		<div id="wrapper">
 			<div id="content" class="full-screen">
 				<ul class="admin-menu">
@@ -36,7 +37,6 @@
 			      		</tr>
 		      		</thead>
 		      		<tbody id=cateList>
-		      		
 					</tbody>
 				</table>
       	
@@ -58,34 +58,31 @@
 		      	
 			</div>
 		</div>
-		<div id="footer">
-			<p>
-				<strong>Spring 이야기</strong> is powered by JBlog (c)2016
-			</p>
-		</div>
+		
+		<!-- 푸터-->
+		<c:import url="/WEB-INF/views/includes/blog-footer.jsp"></c:import>
+		
 	</div>
 </body>
-
 
 <script type="text/javascript">
 
 $(document).ready(function() {
 	fetchList();
 });
-
-
 //카테고리 등록
-$("#btnAddCate").on("click", function(){
+$("#btnAddCate").on("click", function() {
 	var cateName = $("[name=name]").val();
 	var description = $("[name=desc]").val();
 	var userNo = ${blogVo.userNo};
+	
 	console.log(cateName);
 	console.log(description);
 	console.log(userNo);
 	
 	cateVo = {cateName: cateName,
-			      description: description,
-	     		  userNo: userNo } ;
+			  description: description,
+	          userNo: userNo};
 	$.ajax({
 		url : "${pageContext.request.contextPath }/api/cate/add",		
 		type : "post",
@@ -96,34 +93,32 @@ $("#btnAddCate").on("click", function(){
 			render(cateVo, "up");
 			$("[name=name]").val("");
 			$("[name=desc]").val("");
-			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
 		}
 	});
-	
 });
-
-
 //카테고리 삭제
-$("#cateList").on("click", ".btn_cateDel", function(){
+$("#cateList").on("click", ".btn_cateDel", function() {
 	var $this = $(this)
 	var cateNo = $this.data("cateno");
 	var cnt = $this.data("cnt");
+	
 	console.log(cnt);
+	
 	if(cnt > 0 ) {
 		alert("삭제할 수 없습니다.")
-	}else {
+	} else {
 		$.ajax({
 			url : "${pageContext.request.contextPath }/api/cate/remove",		
 			type : "post",
 			data : {cateNo: cateNo},
 			dataType : "json",
 			success : function(result) {
-				if(result == 1){
+				if(result == 1) {
 					$this.parents("tr").remove();
-				}else {
+				} else {
 					console.log("삭제실패");
 				}
 			},
@@ -132,12 +127,7 @@ $("#cateList").on("click", ".btn_cateDel", function(){
 			}
 		});
 	}
-	
-	
 });
-
-
-
 function fetchList() {
 	
 	$.ajax({
@@ -146,7 +136,8 @@ function fetchList() {
 		dataType : "json",
 		success : function(cateList) {
 			console.log(cateList)
-			for(var i=0; i<cateList.length; i++){
+			
+			for(var i=0; i < cateList.length; i++) {
 				render(cateList[i], "down");
 			}
 		},
@@ -154,11 +145,8 @@ function fetchList() {
 			console.error(status + " : " + error);
 		}
 	});
-	
 }
-
-
-/* 게시물을 화면에 표현합니다. */
+//게시물을 화면에 표현
 function render(cateVo, updown) {
 	
 	var str = "" +
@@ -170,18 +158,14 @@ function render(cateVo, updown) {
 				"<td><img class='btn_cateDel' data-cateno='" + cateVo.cateNo + "'  data-cnt='" + cateVo.cnt + "'  src='${pageContext.request.contextPath}/assets/images/delete.jpg'></td>" +
 			"</tr>"
 	
-	if(updown == "up"){
+	if(updown == "up") {
 		$("#cateList").prepend(str); 
-	}else if(updown == "down"){
+	} else if(updown == "down") {
 		$("#cateList").append(str); 
-	}else{
+	} else {
 		console.log("updown 오류")
 	}
 }
-
-
 </script>
-
-
 
 </html>
