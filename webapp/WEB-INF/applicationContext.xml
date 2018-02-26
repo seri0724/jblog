@@ -40,7 +40,6 @@
 		<qualifier value="main-db" />
 	</bean>
 
-
 	<!-- MyBatis SqlSessionFactoryBean -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="oracleDatasource" />
@@ -52,13 +51,11 @@
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 
-
 	<!-- transactionManager -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="oracleDatasource"></property>
 	</bean>
 
  	<tx:annotation-driven transaction-manager="transactionManager"/>
-
 
 </beans>
